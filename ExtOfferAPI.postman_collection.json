@@ -1,0 +1,645 @@
+{
+	"info": {
+		"_postman_id": "66fe27c9-e1c0-4f5b-b71b-929f1306db1b",
+		"name": "Ext Offer API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24374525",
+		"_collection_link": "https://interstellar-flare-95515.postman.co/workspace/Team-Workspace~1a8e0ce7-872b-4456-88a6-b64e78b0e58b/collection/24374525-66fe27c9-e1c0-4f5b-b71b-929f1306db1b?action=share&creator=24374525&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "GetOfferDetails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accep",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"03\",\r\n    \"orgName\": \"ESLO\",\r\n    \"offerNumber\": \"1689342401891\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getofferdetails",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getofferdetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOfferStatusStats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.status;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is Success\", function () {\r",
+							"    pm.expect(response1).to.eql(\"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"summary should not be empty\", function() {\r",
+							"pm.expect(jsonData.summary).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"02\",\r\n    \"orgName\": \"ESLO\",\r\n    \"startDate\": \"2023-08-05\",\r\n    \"endDate\": \"2023-08-11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/analytics/v1/getofferstatusstats",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"analytics",
+						"v1",
+						"getofferstatusstats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Entity API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Checking Status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestorID\": \"OFRI\",\n    \"messageVersion\": \"01\",\n    \"orgName\": \"ESLO\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getentities",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getentities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Attributes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.status;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is Success\", function () {\r",
+							"    pm.expect(response1).to.eql(\"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"attributes should not be empty\", function() {\r",
+							"pm.expect(jsonData.attributes).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"messageVersion\": \"01\",\r\n    \"requestorID\": \"OFRI\",\r\n    \"orgName\": \"ESLO\",\r\n    \"entity\": \"member\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getattributes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getattributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetExpiringOffers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.status;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking Status & Summary\", function() {\r",
+							"pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"pm.expect(jsonData.summary).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"//pm.test(\"summary should not be empty\", function() {\r",
+							"//pm.expect(jsonData.summary[\"0-3 days\"]).to.not.be.empty;\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"01\",\r\n    \"orgName\": \"ESLO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/analytics/v1/getexpiringoffersstats",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"analytics",
+						"v1",
+						"getexpiringoffersstats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOfferList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.statusText;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is Success\", function () {\r",
+							"    pm.expect(response1).to.eql(\"Success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"offerList should not be empty\", function() {\r",
+							"pm.expect(jsonData.offerList).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate sort array has required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.sort).to.be.an('array');\r",
+							"    responseData.sort.forEach(function (sortItem) {\r",
+							"        pm.expect(sortItem.name).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortType).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortPriority).to.exist.and.to.be.a('string');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"01\",\r\n    \"organization\": \"ESLO\",\r\n    \"pagination\": {\r\n        \"recordPerPage\": 50,\r\n        \"currentPage\": 1\r\n    },\r\n    \"sort\": [],\r\n    \"offerSearch\": {\r\n        \"id\": \"\",\r\n        \"type\": \"\",\r\n        \"name\": \"\",\r\n        \"description\": \"\",\r\n        \"dateType\": \"\",\r\n        \"fromDate\": \"\",\r\n        \"toDate\": \"\",\r\n        \"offerStartDate\": \"\",\r\n        \"offerEndDate\": \"\",\r\n        \"lastEditedDate\": \"\",\r\n        \"createdBy\": \"\",\r\n        \"status\": \"\",\r\n        \"searchQuery\": \"\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getofferlist",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getofferlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOfferList Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.statusText;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is Success\", function () {\r",
+							"    pm.expect(response1).to.eql(\"Success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"offerList should not be empty\", function() {\r",
+							"pm.expect(jsonData.offerList).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate sort array has required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.sort).to.be.an('array');\r",
+							"    responseData.sort.forEach(function (sortItem) {\r",
+							"        pm.expect(sortItem.name).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortType).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortPriority).to.exist.and.to.be.a('string');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"01\",\r\n    \"organization\": \"ESLO\",\r\n    \"pagination\": {\r\n        \"recordPerPage\": 50,\r\n        \"currentPage\": 1\r\n    },\r\n    \"sort\": [],\r\n    \"offerSearch\": {\r\n        \"id\": \"\",\r\n        \"type\": \"\",\r\n        \"name\": \"\",\r\n        \"description\": \"\",\r\n        \"dateType\": \"\",\r\n        \"fromDate\": \"\",\r\n        \"toDate\": \"\",\r\n        \"offerStartDate\": \"\",\r\n        \"offerEndDate\": \"\",\r\n        \"lastEditedDate\": \"\",\r\n        \"createdBy\": \"\",\r\n        \"status\": \"\",\r\n        \"searchQuery\": \"\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getofferlist",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getofferlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOfferList Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.statusText;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is Success\", function () {\r",
+							"    pm.expect(response1).to.eql(\"Success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"offerList should not be empty\", function() {\r",
+							"pm.expect(jsonData.offerList).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate sort array has required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.sort).to.be.an('array');\r",
+							"    responseData.sort.forEach(function (sortItem) {\r",
+							"        pm.expect(sortItem.name).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortType).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortPriority).to.exist.and.to.be.a('string');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"01\",\r\n    \"organization\": \"ESLO\",\r\n    \"pagination\": {\r\n        \"recordPerPage\": 50,\r\n        \"currentPage\": 1\r\n    },\r\n    \"sort\": [],\r\n    \"offerSearch\": {\r\n        \"id\": \"\",\r\n        \"type\": \"\",\r\n        \"name\": \"End_Date\",\r\n        \"description\": \"\",\r\n        \"dateType\": \"\",\r\n        \"fromDate\": \"\",\r\n        \"toDate\": \"\",\r\n        \"offerStartDate\": \"\",\r\n        \"offerEndDate\": \"\",\r\n        \"lastEditedDate\": \"\",\r\n        \"createdBy\": \"vasu.chundru@syw.com\",\r\n        \"status\": \"\",\r\n        \"searchQuery\": \"\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getofferlist",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getofferlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOfferList Copy 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let response1 = jsonData.statusText;\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is Success\", function () {\r",
+							"    pm.expect(response1).to.eql(\"Success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"offerList should not be empty\", function() {\r",
+							"pm.expect(jsonData.offerList).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate sort array has required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.sort).to.be.an('array');\r",
+							"    responseData.sort.forEach(function (sortItem) {\r",
+							"        pm.expect(sortItem.name).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortType).to.exist.and.to.be.a('string');\r",
+							"        pm.expect(sortItem.sortPriority).to.exist.and.to.be.a('string');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionId",
+						"value": "xbxsdasdsa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestorID\": \"OFRI\",\r\n    \"messageVersion\": \"01\",\r\n    \"organization\": \"ESLO\",\r\n    \"pagination\": {\r\n        \"recordPerPage\": 50,\r\n        \"currentPage\": 1\r\n    },\r\n    \"sort\": [],\r\n    \"offerSearch\": {\r\n        \"id\": \"\",\r\n        \"type\": \"\",\r\n        \"name\": \"\",\r\n        \"description\": \"\",\r\n        \"dateType\": \"\",\r\n        \"fromDate\": \"\",\r\n        \"toDate\": \"\",\r\n        \"offerStartDate\": \"2023-08-11\",\r\n        \"offerEndDate\": \"\",\r\n        \"lastEditedDate\": \"\",\r\n        \"createdBy\": \"\",\r\n        \"status\": \"\",\r\n        \"searchQuery\": \"\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.uat.tellurideplatform.com/tell/offer/v1/getofferlist",
+					"protocol": "https",
+					"host": [
+						"api",
+						"uat",
+						"tellurideplatform",
+						"com"
+					],
+					"path": [
+						"tell",
+						"offer",
+						"v1",
+						"getofferlist"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
